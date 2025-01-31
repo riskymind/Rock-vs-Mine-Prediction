@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -34,7 +33,17 @@ X_test_prediction = model.predict(X_test)
 train_data_accuracy = accuracy_score(X_train_prediction, y_train)
 test_data_accuracy = accuracy_score(X_test_prediction, y_test)
 
+# Compute how well we performed
+correct = (y_test == X_test_prediction).sum()
+incorrect = (y_test != X_test_prediction).sum()
+
+
+# Print results
+print(f"Results for model {type(model).__name__}")
+print(f"Correct: {correct}")
+print(f"Incorrect: {incorrect}")
 print(f"Accuracy: {test_data_accuracy * 100:.2f}%")
+
 
 # Deploy the model
 # joblib.dump(model, "rock_mine_classifier.pkl")
